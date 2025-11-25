@@ -1,0 +1,87 @@
+============================================================
+PROJETO: PowerShell em Português (Tradutor de Comandos)
+ALUNOS: Enrico Reichow, Felipe Cizanosky e Pedro K. Albuquerque
+DISCIPLINA: Sistemas Operacionais
+============================================================
+
+### DESCRIÇÃO ###
+Este projeto cria uma camada de abstração sobre o PowerShell, permitindo
+que usuários executem comandos nativos utilizando palavras em português.
+O sistema possui busca integrada com o manual do Windows, exibindo 
+descrições e sintaxes para facilitar o aprendizado.
+
+### CONTEÚDO DO PACOTE ###
+1. INSTALAR.bat         -> Instalador automático.
+2. Instalar.ps1         -> Script de configuração (Executado pelo .bat).
+3. Modules/             -> Pasta com o código fonte e banco de dados.
+4. para_executar.txt    -> Este arquivo de instruções.
+
+============================================================
+### COMO INSTALAR ###
+============================================================
+
+--- OPÇÃO 1: AUTOMÁTICA (Recomendada) ---
+
+1. Descompacte a pasta do projeto.
+2. Dê um DUPLO CLIQUE no arquivo "INSTALAR.bat".
+   
+   IMPORTANTE: Não execute como Administrador! Apenas abra normal.
+   
+3. Uma janela preta abrirá e fará a instalação.
+4. Quando terminar, feche a janela e abra o PowerShell.
+
+--- OPÇÃO 2: MANUAL (Caso o .bat não funcione) ---
+
+Se o instalador automático falhar ou fechar sozinho, faça o seguinte:
+
+1. Abra o PowerShell como Administrador.
+2. Copie e cole este comando para liberar permissões:
+   Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser -Force
+
+3. (Opcional) Copie este comando para baixar o manual do Windows:
+   Update-Help -Force -ErrorAction SilentlyContinue
+
+4. Pode fechar essa janela de Administrador.
+5. Volte para a pasta do projeto, clique com o botão direito no arquivo
+   "Instalar.ps1" e selecione "Executar com o PowerShell".
+
+Pronto! O sistema estará instalado.
+
+============================================================
+### COMO TESTAR AS FUNCIONALIDADES (PASSO A PASSO) ###
+============================================================
+
+Para iniciar o gerenciador, digite no terminal: portbash
+
+--- TESTE 1: CRIAR NOVA TRADUÇÃO (Pesquisa Inteligente) ---
+   1. No menu principal, escolha a Opção 1.
+   2. Digite um termo de busca em inglês (ex: "service", "process", "net", "file").
+   3. O sistema buscará no Windows e exibirá uma tabela interativa com:
+      - Nome Original
+      - O Que Faz (Descrição extraída do sistema)
+      - Como Usar (Sintaxe simplificada)
+   4. Selecione o comando desejado na lista e clique em OK (canto inferior direito).
+   5. O sistema pedirá um nome em português. Digite (ex: "listarServicos").
+   6. Dê Enter na descrição (ou digite uma personalizada).
+   7. Sucesso! O comando foi criado.
+
+--- TESTE 2: LISTAR MEUS COMANDOS ---
+   1. No menu principal, escolha a Opção 2.
+   2. Uma tabela será exibida mostrando todas as suas traduções salvas
+      no arquivo JSON local.
+   3. Verifique se o comando que você criou no Teste 1 está lá.
+
+--- TESTE 3: RODAR UM COMANDO TRADUZIDO ---
+   1. Após criar um comando (ex: "listarServicos"), saia do menu (Opção 0).
+   2. De volta ao terminal azul do PowerShell, digite o nome que você criou:
+      
+      PS C:\> listarServicos
+      
+   3. O comando original do Windows será executado imediatamente.
+
+============================================================
+OBSERVAÇÃO TÉCNICA:
+Se a descrição dos comandos aparecer como "Indisponível", é porque
+o manual do Windows não está baixado na máquina.
+Execute o passo 3 da instalação manual para corrigir.
+============================================================
